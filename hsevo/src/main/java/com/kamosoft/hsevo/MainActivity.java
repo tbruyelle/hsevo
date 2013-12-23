@@ -8,28 +8,34 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity {
+import java.util.LinkedList;
 
-    private FrameLayout mCard;
+public class MainActivity extends Activity {
 
     private int mATQ;
     private int mDEF;
+
+    enum Action {
+        upATQ, upDEF
+    }
+
+    LinkedList<Action> mActions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        mCard = (FrameLayout) findViewById(R.id.card);
+        mActions = new LinkedList<Action>();
 
         if (savedInstanceState == null) {
             mATQ = 0;
             mDEF = 1;
-            getFragmentManager().beginTransaction().
+            getFragmentManager().
+                    beginTransaction().
                     add(R.id.card, new CardFragment(getCardId(mATQ, mDEF))).
                     commit();
         }
@@ -59,26 +65,45 @@ public class MainActivity extends Activity {
     public void plusATQ(View v) {
         if (showCard(mATQ + 1, mDEF)) {
             mATQ++;
+            mActions.add(Action.upATQ);
         }
     }
 
     public void plusDEF(View v) {
         if (showCard(mATQ, mDEF + 1)) {
             mDEF++;
+            mActions.add(Action.upDEF);
         }
     }
 
-    public void minusATQ(View v) {
-        if (showCard(mATQ - 1, mDEF)) {
-            mATQ--;
+    @Override
+    public void onBackPressed() {
+        if (!mActions.isEmpty()) {
+            Action lastAction = mActions.removeLast();
+            switch (lastAction) {
+                case upATQ:
+                    mATQ--;
+                    break;
+
+                case upDEF:
+                    mDEF--;
+                    break;
+            }
         }
+        super.onBackPressed();
     }
 
-    public void minusDEF(View v) {
-        if (showCard(mATQ, mDEF - 1)) {
-            mDEF--;
-        }
-    }
+    //    public void minusATQ(View v) {
+//        if (showCard(mATQ - 1, mDEF)) {
+//            mATQ--;
+//        }
+//    }
+//
+//    public void minusDEF(View v) {
+//        if (showCard(mATQ, mDEF - 1)) {
+//            mDEF--;
+//        }
+//    }
 
 
     @Override

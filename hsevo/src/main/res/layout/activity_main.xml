@@ -16,8 +16,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:weightSum="4">
+        android:orientation="horizontal">
 
         <Button
             android:layout_width="match_parent"
@@ -25,12 +24,12 @@
             android:text="+1 ATQ"
             android:layout_weight="1"
             android:onClick="plusATQ" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-1 ATQ"
-            android:layout_weight="1"
-            android:onClick="minusATQ" />
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="-1 ATQ"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="minusATQ" />-->
 
         <Button
             android:layout_width="match_parent"
@@ -38,12 +37,12 @@
             android:text="+1 DEF"
             android:layout_weight="1"
             android:onClick="plusDEF" />
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-1 DEF"
-            android:layout_weight="1"
-            android:onClick="minusDEF" />
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="-1 DEF"-->
+            <!--android:layout_weight="1"-->
+            <!--android:onClick="minusDEF" />-->
     </LinearLayout>
 </LinearLayout>
 
